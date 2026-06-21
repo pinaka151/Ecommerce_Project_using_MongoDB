@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
   if (loading) return <div className="p-8 text-center">Loading products...</div>;
 
   return (
-    <main className="max-w-7xl mx-auto p-6">
+    <main className="max-w-7xl bg-[#6b8b6b] rounded-2xl mx-auto p-6">
       <h1 className="text-3xl font-semibold mb-6">Products</h1>
 <div className="my-2">
          <input onChange={(e) => setQuerry(e.target.value)} value={querry} type="Search" placeholder="Search products..." className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none block w-full focus:ring-2 focus:ring-indigo-500" />
@@ -52,38 +53,39 @@ export default function Home() {
         )}
 
         {Array.isArray(products) && products.map((p) => (
-          <div
-            key={p._id}
-            className="group relative bg-white rounded-lg shadow transition-transform transform hover:shadow-lg hover:-translate-y-1 overflow-hidden"
-          >
-            <div className="h-48 bg-gray-100 overflow-hidden cursor-pointer">
-              <img
-                src={p.image}
-                alt={p.title}
-                className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = '/placeholder.png';
-                }}
-              />
+          <Link href={`/product/${p._id}`} key={p._id}>
+            <div
+              className="group relative bg-white rounded-lg shadow transition-transform transform hover:shadow-lg hover:-translate-y-1 overflow-hidden cursor-pointer"
+            >
+              <div className="h-48 bg-gray-100 overflow-hidden cursor-pointer">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/placeholder.png';
+                  }}
+                />
 
-              <div className="absolute inset-0 flex items-end justify-between p-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="bg-black bg-opacity-60 text-white text-sm font-semibold px-2 py-1 rounded">
-                  {p.price?.toFixed ? `$${p.price.toFixed(2)}` : `$${p.price}`}
-                </span>
-                <button className="pointer-events-auto bg-indigo-600 text-white text-sm px-3 py-1 rounded hover:bg-indigo-500">View</button>
+                <div className="absolute inset-0 flex items-end justify-between p-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="bg-black bg-opacity-60 text-white text-sm font-semibold px-2 py-1 rounded">
+                    {p.price?.toFixed ? `$${p.price.toFixed(2)}` : `$${p.price}`}
+                  </span>
+                  <button className="pointer-events-auto bg-indigo-600 text-white text-sm px-3 py-1 rounded hover:bg-indigo-500">View</button>
+                </div>
+              </div>
+
+              <div className="p-4">
+                <h2 className="text-lg font-bold  mb-1 text-blue-300">{p.title}</h2>
+                <p className="text-sm text-gray-500 mb-2">{p.category}</p>
+                <p className="text-sm text-gray-700 mb-3">{p.description?.slice(0, 100)}{p.description && p.description.length > 100 ? '...' : ''}</p>
+                <div className="flex items-center justify-between">
+                  <span className="font-semibold text-indigo-600">{p.price?.toFixed ? `$${p.price.toFixed(2)}` : `$${p.price}`}</span>
+                </div>
               </div>
             </div>
-
-            <div className="p-4">
-              <h2 className="text-lg font-bold  mb-1 text-blue-300">{p.title}</h2>
-              <p className="text-sm text-gray-500 mb-2">{p.category}</p>
-              <p className="text-sm text-gray-700 mb-3">{p.description?.slice(0, 100)}{p.description && p.description.length > 100 ? '...' : ''}</p>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-indigo-600">{p.price?.toFixed ? `$${p.price.toFixed(2)}` : `$${p.price}`}</span>
-              </div>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
