@@ -11,90 +11,101 @@ export async function GET(){
 
    
     await product.insertMany([
-  {
-    title: "Wireless Headphones",
-    description: "High-quality wireless headphones with noise cancellation.",
-    price: 129.99,
-    category: "Electronics",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Gaming Mouse",
-    description: "Ergonomic gaming mouse with customizable RGB lighting.",
-    price: 49.99,
-    category: "Electronics",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Smart Watch",
-    description: "Track your fitness and receive notifications on the go.",
-    price: 199.99,
-    category: "Electronics",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Red Shirt",
-    description: "Stylish and comfortable cotton shirt.",
-    price: 29.99,
-    category: "Clothing",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Blue Jeans",
-    description: "Premium slim-fit denim jeans.",
-    price: 59.99,
-    category: "Clothing",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Running Shoes",
-    description: "Lightweight running shoes for everyday training.",
-    price: 89.99,
-    category: "Footwear",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Leather Wallet",
-    description: "Genuine leather wallet with multiple card slots.",
-    price: 24.99,
-    category: "Accessories",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Backpack",
-    description: "Durable backpack with laptop compartment.",
-    price: 44.99,
-    category: "Accessories",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Coffee Maker",
-    description: "Brew fresh coffee in minutes.",
-    price: 79.99,
-    category: "Home & Kitchen",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Blender",
-    description: "Powerful blender for smoothies and shakes.",
-    price: 69.99,
-    category: "Home & Kitchen",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Air Fryer",
-    description: "Healthy cooking with less oil.",
-    price: 119.99,
-    category: "Home & Kitchen",
-    image: randomImageUrl(),
-  },
-  {
-    title: "Desk Lamp",
-    description: "LED desk lamp with adjustable brightness.",
-    price: 34.99,
-    category: "Home Decor",
-    image: randomImageUrl(),
-  },
+{
+  title: "Wireless Bluetooth Headphones with Noise Cancellation and Deep Bass",
+  description: "Premium wireless bluetooth headphones featuring active noise cancellation, deep bass sound quality, comfortable over ear cushions, long battery backup, fast charging support, crystal clear calling, music streaming, gaming sessions, office work, travel use and daily entertainment.",
+  price: 129.99,
+  category: "Electronics",
+  image: randomImageUrl(),
+},
+
+{
+  title: "RGB Gaming Mouse with Adjustable DPI and Ergonomic Design",
+  description: "Professional gaming mouse with adjustable DPI settings, customizable RGB lighting, precision optical sensor, ergonomic grip design, lightweight construction, smooth tracking performance, competitive gaming support, office productivity, content creation and everyday computer usage.",
+  price: 49.99,
+  category: "Electronics",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Smart Fitness Watch with Heart Rate and Sleep Tracking",
+  description: "Advanced smartwatch featuring heart rate monitoring, sleep tracking, fitness activity tracking, calorie counter, bluetooth connectivity, multiple sports modes, smartphone notifications, workout analytics, health monitoring features and everyday lifestyle management.",
+  price: 199.99,
+  category: "Electronics",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Premium Cotton Red Shirt for Casual and Formal Wear",
+  description: "Stylish cotton shirt designed with breathable fabric, comfortable regular fit, premium stitching quality, modern fashion appearance, casual outings, office wear, college students, social gatherings, special occasions and everyday use.",
+  price: 29.99,
+  category: "Clothing",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Slim Fit Blue Denim Jeans for Everyday Comfort",
+  description: "Premium slim fit denim jeans made from durable fabric offering superior comfort, modern styling, casual wear suitability, travel convenience, office casual looks, everyday fashion needs and long lasting performance.",
+  price: 59.99,
+  category: "Clothing",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Lightweight Running Shoes for Sports and Training",
+  description: "Lightweight running shoes designed for jogging, walking, gym workouts, sports training, fitness activities, breathable mesh construction, cushioned sole support, outdoor exercise sessions and comfortable daily wear.",
+  price: 89.99,
+  category: "Footwear",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Genuine Leather Wallet with Multiple Card Compartments",
+  description: "Premium genuine leather wallet featuring multiple card slots, spacious cash compartment, secure storage design, durable craftsmanship, elegant appearance, business professionals, daily pocket carry and long term usability.",
+  price: 24.99,
+  category: "Accessories",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Travel Backpack with Laptop Compartment and Large Storage",
+  description: "Durable travel backpack with dedicated laptop compartment, spacious storage sections, water resistant material, comfortable shoulder straps, college students, office professionals, daily commuting, school use and travel adventures.",
+  price: 44.99,
+  category: "Accessories",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Automatic Coffee Maker for Home and Office Use",
+  description: "Modern coffee maker machine capable of brewing fresh coffee quickly, easy operation controls, home kitchens, office environments, coffee enthusiasts, daily morning routines, convenient beverage preparation and reliable performance.",
+  price: 79.99,
+  category: "Home & Kitchen",
+  image: randomImageUrl(),
+},
+
+{
+  title: "High Performance Blender for Smoothies and Shakes",
+  description: "Powerful kitchen blender suitable for smoothies, protein shakes, fruit juices, food processing, healthy meal preparation, high speed blending performance, durable construction and convenient everyday kitchen use.",
+  price: 69.99,
+  category: "Home & Kitchen",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Digital Air Fryer for Healthy Low Oil Cooking",
+  description: "Advanced air fryer featuring low oil cooking technology, baking, roasting, frying and reheating capabilities, family meal preparation, healthy lifestyle support, quick cooking performance and modern kitchen convenience.",
+  price: 119.99,
+  category: "Home & Kitchen",
+  image: randomImageUrl(),
+},
+
+{
+  title: "Adjustable LED Desk Lamp for Study and Work",
+  description: "Adjustable LED desk lamp with multiple brightness levels, energy efficient lighting technology, study tables, office desks, reading sessions, eye comfort support, productivity enhancement and modern workspace aesthetics.",
+  price: 34.99,
+  category: "Home Decor",
+  image: randomImageUrl(),
+},
 {
   title: "Premium Wireless Bluetooth Noise Cancelling Over Ear Headphones with Deep Bass and Long Battery Life",
   description: "High quality wireless bluetooth headphones featuring active noise cancellation, deep bass sound, comfortable ear cushions, long battery life, fast charging, music streaming, gaming, travel, office work and daily entertainment.",

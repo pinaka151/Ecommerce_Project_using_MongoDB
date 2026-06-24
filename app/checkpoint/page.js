@@ -5,6 +5,10 @@ import Link from "next/link";
 
 export default function CheckpointPage() {
   const [cartItems, setCartItems] = useState([]);
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [address, setAddress] = useState("");
+  const [details, setDetails] = useState("");
 
   useEffect(() => {
     const raw = localStorage.getItem("roop-nagar-cart");
@@ -13,8 +17,44 @@ export default function CheckpointPage() {
 
   const total = cartItems.reduce((s, it) => s + it.price * it.quantity, 0);
 
-  const placeOrder = () => {
-    alert("Order placed! This is a demo, so no actual order is created. In a real application, this would submit the order details to the server for processing.");
+  const placeOrder = async () => {
+    if (cartItems.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    const payload = {
+      items: cartItems.map((it) => ({ productId: it._id || it.id || "", title: it.title, price: it.price, quantity: it.quantity })),
+      name,
+      contact,
+      address,
+      details,
+      total,
+    };
+
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        alert("Thank you! Your order has been placed.");
+        localStorage.removeItem("roop-nagar-cart");
+        setCartItems([]);
+        setName("");
+        setContact("");
+        setAddress("");
+        setDetails("");
+      } else {
+        console.error(data);
+        alert("Failed to place order. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to place order. Please try again.");
+    }
   };
   return (
     <main className="min-h-screen bg-red-300 relative overflow-hidden">
@@ -39,11 +79,11 @@ export default function CheckpointPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="text-sm font-medium text-slate-700">Full Name</span>
-                <input type="text" placeholder="Your name" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none" />
+                <input value={name} onChange={(e)=>setName(e.target.value)} type="text" placeholder="Your name" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none" />
               </label>
               <label className="block">
                 <span className="text-sm font-medium text-slate-700">Contact Number</span>
-                <input type="text" placeholder="Mobile number" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none" />
+                <input value={contact} onChange={(e)=>setContact(e.target.value)} type="text" placeholder="Mobile number" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none" />
               </label>
             </div>
 
@@ -51,13 +91,13 @@ export default function CheckpointPage() {
              
               <label className="block">
                 <span className="text-sm font-medium text-slate-700">Delivery / Pickup Location</span>
-                <input type="text" placeholder="Roop Nagar address" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none" />
+                <input value={address} onChange={(e)=>setAddress(e.target.value)} type="text" placeholder="Roop Nagar address" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none" />
               </label>
             </div>
 
             <label className="block">
               <span className="text-sm font-medium text-slate-700">Order Details</span>
-              <textarea placeholder="Describe the item, quantity, and any special instructions." rows={4} className="mt-2 w-full rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none"></textarea>
+              <textarea value={details} onChange={(e)=>setDetails(e.target.value)} placeholder="Describe the item, quantity, and any special instructions." rows={4} className="mt-2 w-full rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-slate-500 focus:outline-none"></textarea>
             </label>
 
            
@@ -107,6 +147,7 @@ export default function CheckpointPage() {
           </div>
           {/* end of order summary */}
         </div>
+        
     
     </main>
   );
